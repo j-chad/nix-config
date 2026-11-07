@@ -13,7 +13,7 @@
 	layout = "us";
 	variant = "";
   };
-  console.useXkbLayout = true;
+  console.useXkbConfig = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
