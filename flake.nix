@@ -18,13 +18,23 @@
   };
 
   outputs = { self, nixpkgs, disko, home-manager, ... }: {
-    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        disko.nixosModules.disko
-        home-manager.nixosModules.home-manager
-        ./hosts/deskttop
-      ];
+    nixosConfigurations = {
+      desktop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          home-manager.nixosModules.home-manager
+          ./hosts/desktop
+        ];
+      };
+
+      installer = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit self disko; };
+        modules = [
+          ./hosts/installer
+        ];
+      };
     };
   };
 }
