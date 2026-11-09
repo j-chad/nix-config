@@ -21,7 +21,8 @@
   # GNOME Desktop Environment
   services.xserver.enable = true;
   services.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = true;
+  services.gnome.gcr-ssh-agent.enable = false;
 
   # Audio (PipeWire)
   security.rtkit.enable = true;
@@ -49,14 +50,12 @@
     extraGroups = [ "wheel" "networkmanager" ];
   };
 
-  programs.firefox.enable = true;
   environment.systemPackages = with pkgs; [
     git
     vim
     wget
     curl
     btrfs-progs
-    tree
   ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
